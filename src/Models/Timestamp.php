@@ -10,7 +10,8 @@ class Timestamp extends TagLengthString
     {
         $millisecondTimestamp = floor(microtime(true) * 1000);
         $timestamp = new TimestampMillisecond('00', (string) $millisecondTimestamp);
-        $value = (string) $timestamp;
+        $expirationTimestamp = new TimestampMillisecond('01', (string) ($millisecondTimestamp + 60000));
+        $value = (string) $timestamp . (string) $expirationTimestamp;
         parent::__construct($tag, $value);
     }
 }
